@@ -1,0 +1,555 @@
+{
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "normal-001",
+      "category": "normal",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1995-03-21",
+        "birthTime": "14:30",
+        "gender": "female",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "을해",
+        "monthPillar": "기묘",
+        "dayPillar": "신해",
+        "hourPillar": "을미"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.9,
+      "status": "active"
+    },
+    {
+      "id": "normal-002",
+      "category": "normal",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1988-10-05",
+        "birthTime": "09:10",
+        "gender": "male",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "무진",
+        "monthPillar": "신유",
+        "dayPillar": "계사",
+        "hourPillar": "병진"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.9,
+      "status": "active"
+    },
+    {
+      "id": "normal-003",
+      "category": "normal",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "2001-12-11",
+        "birthTime": "18:40",
+        "gender": "female",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "신사",
+        "monthPillar": "경자",
+        "dayPillar": "무신",
+        "hourPillar": "신유"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.9,
+      "status": "active"
+    },
+    {
+      "id": "normal-004",
+      "category": "normal",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1977-04-29",
+        "birthTime": "07:25",
+        "gender": "male",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "정사",
+        "monthPillar": "갑진",
+        "dayPillar": "병진",
+        "hourPillar": "신묘"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.9,
+      "status": "active"
+    },
+    {
+      "id": "normal-005",
+      "category": "normal",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1993-08-17",
+        "birthTime": "15:55",
+        "gender": "female",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "계유",
+        "monthPillar": "경신",
+        "dayPillar": "경오",
+        "hourPillar": "갑신"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.9,
+      "status": "active"
+    },
+    {
+      "id": "normal-006",
+      "category": "normal",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1985-01-03",
+        "birthTime": "11:00",
+        "gender": "male",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "갑자",
+        "monthPillar": "병자",
+        "dayPillar": "임인",
+        "hourPillar": "을사"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.9,
+      "status": "active"
+    },
+    {
+      "id": "normal-007",
+      "category": "normal",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "2003-06-23",
+        "birthTime": "20:20",
+        "gender": "female",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "계미",
+        "monthPillar": "무오",
+        "dayPillar": "정묘",
+        "hourPillar": "경술"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.9,
+      "status": "active"
+    },
+    {
+      "id": "normal-008",
+      "category": "normal",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1999-11-09",
+        "birthTime": "04:45",
+        "gender": "male",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "기묘",
+        "monthPillar": "을해",
+        "dayPillar": "을축",
+        "hourPillar": "무인"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.9,
+      "status": "active"
+    },
+    {
+      "id": "normal-009",
+      "category": "normal",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1971-09-14",
+        "birthTime": "13:05",
+        "gender": "female",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "신해",
+        "monthPillar": "정유",
+        "dayPillar": "임인",
+        "hourPillar": "병오"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.9,
+      "status": "active"
+    },
+    {
+      "id": "normal-010",
+      "category": "normal",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1990-02-22",
+        "birthTime": "16:15",
+        "gender": "male",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "경오",
+        "monthPillar": "무인",
+        "dayPillar": "무오",
+        "hourPillar": "경신"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.9,
+      "status": "active"
+    },
+    {
+      "id": "jasi-001",
+      "category": "jasi-boundary",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1994-05-12",
+        "birthTime": "23:00",
+        "gender": "female",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "갑술",
+        "monthPillar": "기사",
+        "dayPillar": "무술",
+        "hourPillar": "계해"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "jasi-002",
+      "category": "jasi-boundary",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1994-05-12",
+        "birthTime": "23:59",
+        "gender": "female",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "갑술",
+        "monthPillar": "기사",
+        "dayPillar": "무술",
+        "hourPillar": "임자"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "jasi-003",
+      "category": "jasi-boundary",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1994-05-13",
+        "birthTime": "00:00",
+        "gender": "male",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "갑술",
+        "monthPillar": "기사",
+        "dayPillar": "기해",
+        "hourPillar": "갑자"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "jasi-004",
+      "category": "jasi-boundary",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1994-05-13",
+        "birthTime": "00:59",
+        "gender": "male",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "갑술",
+        "monthPillar": "기사",
+        "dayPillar": "기해",
+        "hourPillar": "갑자"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "jasi-005",
+      "category": "jasi-boundary",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1994-05-13",
+        "birthTime": "01:00",
+        "gender": "female",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "갑술",
+        "monthPillar": "기사",
+        "dayPillar": "기해",
+        "hourPillar": "갑자"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "jeolip-001",
+      "category": "jeolip-boundary",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1996-02-04",
+        "birthTime": "00:05",
+        "gender": "male",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "병자",
+        "monthPillar": "경인",
+        "dayPillar": "신미",
+        "hourPillar": "무자"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "jeolip-002",
+      "category": "jeolip-boundary",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1996-02-03",
+        "birthTime": "23:55",
+        "gender": "male",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "을해",
+        "monthPillar": "기축",
+        "dayPillar": "경오",
+        "hourPillar": "병자"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "jeolip-003",
+      "category": "jeolip-boundary",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "2002-03-06",
+        "birthTime": "00:10",
+        "gender": "female",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "임오",
+        "monthPillar": "계묘",
+        "dayPillar": "계유",
+        "hourPillar": "임자"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "jeolip-004",
+      "category": "jeolip-boundary",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "2002-03-05",
+        "birthTime": "23:50",
+        "gender": "female",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "임오",
+        "monthPillar": "임인",
+        "dayPillar": "임신",
+        "hourPillar": "경자"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "jeolip-005",
+      "category": "jeolip-boundary",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "2010-08-08",
+        "birthTime": "00:01",
+        "gender": "male",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "경인",
+        "monthPillar": "갑신",
+        "dayPillar": "경인",
+        "hourPillar": "병자"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "leap-001",
+      "category": "leap-month",
+      "input": {
+        "calendarType": "lunar",
+        "isLeapMonth": true,
+        "birthDate": "2001-04-05",
+        "birthTime": "12:00",
+        "gender": "female",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "신사",
+        "monthPillar": "계사",
+        "dayPillar": "경인",
+        "hourPillar": "임오"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "leap-002",
+      "category": "leap-month",
+      "input": {
+        "calendarType": "lunar",
+        "isLeapMonth": true,
+        "birthDate": "2004-02-18",
+        "birthTime": "08:35",
+        "gender": "male",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "갑신",
+        "monthPillar": "무진",
+        "dayPillar": "병진",
+        "hourPillar": "임진"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "leap-003",
+      "category": "leap-day",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "2016-02-29",
+        "birthTime": "10:10",
+        "gender": "female",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "병신",
+        "monthPillar": "경인",
+        "dayPillar": "신사",
+        "hourPillar": "계사"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "leap-004",
+      "category": "year-boundary",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "1999-12-31",
+        "birthTime": "23:59",
+        "gender": "male",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "기묘",
+        "monthPillar": "병자",
+        "dayPillar": "정사",
+        "hourPillar": "경자"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    },
+    {
+      "id": "leap-005",
+      "category": "year-boundary",
+      "input": {
+        "calendarType": "solar",
+        "isLeapMonth": false,
+        "birthDate": "2000-01-01",
+        "birthTime": "00:01",
+        "gender": "female",
+        "timezone": "Asia/Seoul"
+      },
+      "expected": {
+        "yearPillar": "기묘",
+        "monthPillar": "병자",
+        "dayPillar": "무오",
+        "hourPillar": "임자"
+      },
+      "reference": "@fullstackfamily/manseryeok",
+      "referenceVersion": "1.0.7",
+      "confidence": 0.8,
+      "status": "active"
+    }
+  ]
+}

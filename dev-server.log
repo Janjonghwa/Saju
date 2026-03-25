@@ -1,0 +1,28 @@
+
+> app@0.1.0 dev C:\Users\SSAFY\Desktop\app
+> next dev
+
+▲ Next.js 16.2.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://70.12.102.165:3000
+- Environments: .env
+✓ Ready in 293ms
+
+{"timestamp":"2026-03-25T04:01:42.422Z","level":"info","requestId":"38816e0d-4e19-4d31-aa7e-a318fa3fde8e","message":"profile request received","data":{"method":"GET","path":"/api/profile"}}
+{"timestamp":"2026-03-25T04:01:42.457Z","level":"info","requestId":"38816e0d-4e19-4d31-aa7e-a318fa3fde8e","message":"profile fetched","data":{"userId":"cmn5inwq900001f98b90m0spw"}}
+ GET /api/profile 200 in 790ms (next.js: 733ms, application-code: 57ms)
+{"timestamp":"2026-03-25T04:01:47.165Z","level":"info","requestId":"11abf77c-6e95-4cf3-9892-8cd9a70396c7","message":"profile update request received","data":{"method":"PATCH","path":"/api/profile"}}
+{"timestamp":"2026-03-25T04:01:47.187Z","level":"info","requestId":"11abf77c-6e95-4cf3-9892-8cd9a70396c7","message":"profile updated","data":{"userId":"cmn5inwq900001f98b90m0spw"}}
+ PATCH /api/profile 200 in 30ms (next.js: 4ms, application-code: 27ms)
+{"timestamp":"2026-03-25T04:01:47.262Z","level":"info","requestId":"ed3b7502-bb71-4151-9aad-ea5aca71075a","message":"account delete request received","data":{"method":"DELETE","path":"/api/profile"}}
+{"timestamp":"2026-03-25T04:01:47.271Z","level":"info","requestId":"ed3b7502-bb71-4151-9aad-ea5aca71075a","message":"account deleted","data":{"userId":"cmn5inwq900001f98b90m0spw"}}
+ DELETE /api/profile 200 in 16ms (next.js: 1972µs, application-code: 14ms)
+{"timestamp":"2026-03-25T04:02:06.243Z","level":"info","requestId":"0383e370-e797-404a-9eee-3d49f87778ce","message":"profile request received","data":{"method":"GET","path":"/api/profile"}}
+{"timestamp":"2026-03-25T04:02:06.261Z","level":"info","requestId":"0383e370-e797-404a-9eee-3d49f87778ce","message":"profile fetched","data":{"userId":"cmn5iorxn00001fyc8pudu6vh"}}
+ GET /api/profile 200 in 23ms (next.js: 1947µs, application-code: 21ms)
+{"timestamp":"2026-03-25T04:02:08.523Z","level":"info","requestId":"9077be7d-7db3-4eed-bde2-8f2c0229484a","message":"account delete request received","data":{"method":"DELETE","path":"/api/profile"}}
+{"timestamp":"2026-03-25T04:02:08.532Z","level":"info","requestId":"9077be7d-7db3-4eed-bde2-8f2c0229484a","message":"account deleted","data":{"userId":"cmn5iorxn00001fyc8pudu6vh"}}
+ DELETE /api/profile 200 in 14ms (next.js: 1835µs, application-code: 12ms)
+{"timestamp":"2026-03-25T04:03:55.336Z","level":"info","requestId":"e6d96941-7816-421c-a5d7-36cbd78d8d08","message":"profile request received","data":{"method":"GET","path":"/api/profile"}}
+{"timestamp":"2026-03-25T04:03:55.342Z","level":"warn","requestId":"e6d96941-7816-421c-a5d7-36cbd78d8d08","message":"profile unauthorized access","data":{"path":"/api/profile"}}
+ GET /api/profile 401 in 66ms (next.js: 56ms, application-code: 10ms)
