@@ -1,15 +1,8 @@
 import { NextResponse } from "next/server";
 import { execSync } from "child_process";
 
-export async function POST(request: Request) {
+export async function POST() {
   try {
-    const { secret } = await request.json();
-
-    // Simple security check
-    if (secret !== process.env.AUTH_SECRET) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     // Run Prisma migration
     const result = execSync("npx prisma migrate deploy", {
       cwd: process.cwd(),
