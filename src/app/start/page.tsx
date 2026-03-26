@@ -108,11 +108,52 @@ export default async function StartPage() {
                     </button>
                   </form>
                 ))}
+                
+                {/* Divider */}
+                <div className="relative my-4">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-amber-900/20"></div>
+                  </div>
+                  <div className="relative flex justify-center text-xs">
+                    <span className="bg-gradient-to-b from-[#0f0f1a] to-[#1a1a2e] px-2 text-slate-600">또는</span>
+                  </div>
+                </div>
+                
+                {/* Guest login */}
+                <form
+                  action={async () => {
+                    "use server";
+                    await signIn("guest", { redirectTo: "/start" });
+                  }}
+                >
+                  <button
+                    type="submit"
+                    className="w-full rounded-lg border border-amber-900/30 bg-transparent px-4 py-3 text-sm font-medium text-amber-400 transition hover:border-amber-700/50 hover:bg-amber-900/10"
+                  >
+                    게스트로 시작하기
+                  </button>
+                </form>
               </div>
             ) : (
-              <div className="card-traditional rounded-xl p-6 text-center">
-                <p className="text-sm text-slate-400">소셜 로그인을 설정 중입니다</p>
-                <p className="mt-2 text-xs text-slate-600">잠시 후 다시 시도해주세요</p>
+              <div className="w-full max-w-xs space-y-3">
+                <div className="card-traditional rounded-xl p-4 text-center">
+                  <p className="text-sm text-slate-400">소셜 로그인을 설정 중입니다</p>
+                </div>
+                
+                {/* Guest login when no social providers */}
+                <form
+                  action={async () => {
+                    "use server";
+                    await signIn("guest", { redirectTo: "/start" });
+                  }}
+                >
+                  <button
+                    type="submit"
+                    className="w-full rounded-lg border border-amber-900/30 bg-transparent px-4 py-3 text-sm font-medium text-amber-400 transition hover:border-amber-700/50 hover:bg-amber-900/10"
+                  >
+                    게스트로 시작하기
+                  </button>
+                </form>
               </div>
             )}
           </div>

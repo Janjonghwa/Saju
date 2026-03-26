@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Kakao from "next-auth/providers/kakao";
 import Naver from "next-auth/providers/naver";
+import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 
 import { prisma } from "@/lib/prisma";
@@ -45,16 +46,48 @@ if (naverClientId && naverClientSecret) {
   );
 }
 
+// Guest login provider
+providers.push(
+  Credentials({
+    id: "guest",
+    name: "게스트 로그인",
+    credentials: {},
+    async authorize() {
+      // Create or find a guest user
+      const guestId = `guest_${Date.now()}`;
+      const guestUser = await prisma.user.upsert({
+        where: { email: `${guestId}@guest.local` },
+        update: {},
+        create: {
+          id: guestId,
+          email: `${guestId}@guest.local`,
+          name: "게스트",
+          role: "user",
+        },
+      });
+
+      return {
+        id: guestUser.id,
+        name: guestUser.name,
+        email: guestUser.email,
+      };
+    },
+  }),
+);
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma) as any,
   providers,
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
-    async session({ session, user }) {
-      if (session.user) {
-        session.user.id = user.id;
+    async session({ session, token }) {
+      if (session.user && token.sub) {
+        session.user.id = token.sub;
 
         const dbUser = await prisma.user.findUnique({
-          where: { id: user.id },
+          where: { id: token.sub },
           select: { role: true },
         });
 
@@ -62,6 +95,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
 
       return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.sub = user.id;
+      }
+
+      return token;
     },
   },
 });
