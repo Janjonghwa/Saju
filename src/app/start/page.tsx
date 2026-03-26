@@ -13,19 +13,19 @@ const socialLoginProviders = [
   {
     id: "google",
     label: "Google 로그인",
-    className: "w-full rounded-lg bg-white px-4 py-2.5 text-sm font-medium text-slate-900 transition hover:bg-slate-100",
+    className: "w-full rounded-lg bg-white/90 px-4 py-3 text-sm font-medium text-slate-800 transition hover:bg-white",
     enabled: isGoogleOAuthReady,
   },
   {
     id: "kakao",
-    label: "Kakao 로그인",
-    className: "w-full rounded-lg bg-[#FEE500] px-4 py-2.5 text-sm font-medium text-slate-900 transition hover:bg-[#fdd835]",
+    label: "카카오 로그인",
+    className: "w-full rounded-lg bg-[#FEE500] px-4 py-3 text-sm font-medium text-slate-800 transition hover:bg-[#fdd835]",
     enabled: isKakaoOAuthReady,
   },
   {
     id: "naver",
-    label: "Naver 로그인",
-    className: "w-full rounded-lg bg-[#03C75A] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#02b350]",
+    label: "네이버 로그인",
+    className: "w-full rounded-lg bg-[#03C75A] px-4 py-3 text-sm font-medium text-white transition hover:bg-[#02b350]",
     enabled: isNaverOAuthReady,
   },
 ] as const;
@@ -38,67 +38,81 @@ export default async function StartPage() {
   const session = await auth();
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      <div className="mx-auto w-full max-w-3xl px-6 py-10">
-        <Link href="/" className="mb-6 inline-block text-sm text-slate-400 transition hover:text-amber-400">
-          ← 홈으로
-        </Link>
+    <main className="relative min-h-screen overflow-hidden bg-traditional">
+      {/* Header */}
+      <header className="relative z-10 border-b border-amber-900/20">
+        <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
+          <Link href="/" className="font-['Noto_Serif_KR'] text-lg font-bold text-gold-gradient">
+            命理
+          </Link>
+          {session?.user && (
+            <form
+              action={async () => {
+                "use server";
+                await signOut({ redirectTo: "/" });
+              }}
+            >
+              <button
+                type="submit"
+                className="rounded px-3 py-1.5 text-xs text-slate-500 transition hover:text-amber-400"
+              >
+                로그아웃
+              </button>
+            </form>
+          )}
+        </div>
+      </header>
 
-        <h1 className="mb-2 text-2xl font-bold text-white">사주 시작하기</h1>
-        <p className="mb-6 text-sm text-slate-400">
-          로그인 후 원하는 리포트를 생성하세요.
-        </p>
-
+      {/* Content */}
+      <div className="relative z-10 mx-auto w-full max-w-2xl px-6 py-12">
         {session?.user ? (
-          <div className="space-y-4">
-            <div className="flex items-center justify-between rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-3">
-              <p className="text-sm text-slate-300">
+          <div className="space-y-6">
+            {/* User info */}
+            <div className="text-center">
+              <p className="font-['Noto_Serif_KR'] text-sm text-amber-200/60">
                 {session.user.email ?? session.user.name}님
               </p>
-              <form
-                action={async () => {
-                  "use server";
-                  await signOut({ redirectTo: "/" });
-                }}
-              >
-                <button
-                  type="submit"
-                  className="rounded-lg border border-slate-600 px-3 py-1.5 text-xs text-slate-400 transition hover:border-amber-500 hover:text-amber-400"
-                >
-                  로그아웃
-                </button>
-              </form>
+              <h1 className="mt-2 font-['Noto_Serif_KR'] text-2xl font-bold text-white">
+                사주 리포트
+              </h1>
+              <p className="mt-1 text-sm text-slate-500">
+                정보를 입력하고 리포트를 생성하세요
+              </p>
             </div>
             <StartClientForm />
           </div>
         ) : (
-          <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-6">
+          <div className="flex flex-col items-center py-16">
+            <span className="mb-6 font-['Noto_Serif_KR'] text-sm tracking-[0.3em] text-gold-gradient">
+              전통 사주명리학
+            </span>
+            <h1 className="mb-2 font-['Noto_Serif_KR'] text-2xl font-bold text-white">
+              로그인
+            </h1>
+            <p className="mb-8 text-sm text-slate-500">
+              소셜 로그인 후 사주 리포트를 생성하세요
+            </p>
+
             {enabledSocialLoginProviders.length > 0 ? (
-              <>
-                <p className="mb-4 text-sm text-slate-300">소셜 로그인 후 리포트 생성이 가능합니다.</p>
-                <div className="flex flex-col gap-2">
-                  {enabledSocialLoginProviders.map((provider) => (
-                    <form
-                      key={provider.id}
-                      action={async () => {
-                        "use server";
-                        await signIn(provider.id, { redirectTo: "/start" });
-                      }}
-                    >
-                      <button type="submit" className={provider.className}>
-                        {provider.label}
-                      </button>
-                    </form>
-                  ))}
-                </div>
-              </>
+              <div className="w-full max-w-xs space-y-3">
+                {enabledSocialLoginProviders.map((provider) => (
+                  <form
+                    key={provider.id}
+                    action={async () => {
+                      "use server";
+                      await signIn(provider.id, { redirectTo: "/start" });
+                    }}
+                  >
+                    <button type="submit" className={provider.className}>
+                      {provider.label}
+                    </button>
+                  </form>
+                ))}
+              </div>
             ) : (
-              <div className="space-y-2 text-sm text-slate-400">
-                <p>소셜 OAuth 설정이 필요합니다.</p>
-                <p className="text-xs">
-                  <code className="rounded bg-slate-700 px-1 py-0.5">AUTH_GOOGLE_ID</code> 등을
-                  <code className="ml-1 rounded bg-slate-700 px-1 py-0.5">.env</code>에 설정하세요.
-                </p>
+              <div className="card-traditional rounded-xl p-6 text-center">
+                <p className="text-sm text-slate-400">소셜 로그인을 설정 중입니다</p>
+                <p className="mt-2 text-xs text-slate-600">잠시 후 다시 시도해주세요</p>
               </div>
             )}
           </div>
