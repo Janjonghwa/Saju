@@ -29,6 +29,9 @@ if (kakaoClientId && kakaoClientSecret) {
     Kakao({
       clientId: kakaoClientId,
       clientSecret: kakaoClientSecret,
+      authorization: "https://kauth.kakao.com/oauth/authorize",
+      token: "https://kauth.kakao.com/oauth/token",
+      userinfo: "https://kapi.kakao.com/v2/user/me",
     }),
   );
 }
