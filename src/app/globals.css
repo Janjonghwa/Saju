@@ -1,26 +1,138 @@
 @import "tailwindcss";
 
+/* Traditional Korean Colors */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --hanja: #8B1A1A;      /* 자주 */
+  --gold: #C9A959;        /* 금 */
+  --ink: #1a1a1a;         /* 먹 */
+  --hanji: #f8f4eb;       /* 한지 */
+  --jade: #2d6a4f;        /* 옥 */
+  --indigo: #2c3e50;      /* 남색 */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 100%);
+  color: #e8e0d0;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* Traditional pattern overlay */
+.bg-traditional {
+  position: relative;
+}
+
+.bg-traditional::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 300px 150px at 20% 20%, rgba(201, 169, 89, 0.04) 0%, transparent 100%),
+    radial-gradient(ellipse 200px 100px at 80% 30%, rgba(201, 169, 89, 0.03) 0%, transparent 100%),
+    radial-gradient(ellipse 250px 125px at 50% 80%, rgba(139, 26, 26, 0.03) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Gold gradient text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #C9A959 0%, #E8D5A3 50%, #C9A959 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gold shimmer animation */
+@keyframes gold-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, #C9A959 0%, #E8D5A3 25%, #C9A959 50%, #E8D5A3 75%, #C9A959 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gold-shimmer 4s linear infinite;
+}
+
+/* Traditional card */
+.card-traditional {
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.9) 100%);
+  border: 1px solid rgba(201, 169, 89, 0.15);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.card-traditional:hover {
+  border-color: rgba(201, 169, 89, 0.3);
+  box-shadow: 0 8px 32px rgba(201, 169, 89, 0.1);
+}
+
+/* Traditional button */
+.btn-traditional {
+  background: linear-gradient(135deg, #8B1A1A 0%, #a02040 100%);
+  border: 1px solid rgba(201, 169, 89, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-traditional::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201, 169, 89, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-traditional:hover::before {
+  opacity: 1;
+}
+
+.btn-traditional:hover {
+  box-shadow: 0 0 20px rgba(201, 169, 89, 0.2);
+  border-color: rgba(201, 169, 89, 0.4);
+}
+
+/* Decorative border */
+.border-gold {
+  border-image: linear-gradient(90deg, transparent 0%, rgba(201, 169, 89, 0.3) 20%, rgba(201, 169, 89, 0.3) 80%, transparent 100%) 1;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Traditional form elements */
+select, input[type="date"], input[type="time"] {
+  background: rgba(26, 26, 46, 0.8);
+  border: 1px solid rgba(201, 169, 89, 0.2);
+  color: #e8e0d0;
+  transition: all 0.3s ease;
+}
+
+select:focus, input:focus {
+  border-color: rgba(201, 169, 89, 0.5);
+  box-shadow: 0 0 10px rgba(201, 169, 89, 0.1);
+  outline: none;
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
 }
