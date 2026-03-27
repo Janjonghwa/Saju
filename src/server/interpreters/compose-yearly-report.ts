@@ -12,23 +12,8 @@ const YEARLY_ELEMENT_TAGS = new Set([
   "GENERAL_BALANCE",
 ]);
 
-const resolveSectionAccessLevel = (tag: string): AccessLevel => {
-  if (tag.endsWith("_CHARACTER") || tag.endsWith("_LOVE")) {
-    return "free";
-  }
-
-  if (tag.endsWith("_CAREER") || tag.endsWith("_HEALTH")) {
-    return "premium";
-  }
-
-  if (tag.endsWith("_GENERATION") || tag.endsWith("_CONFLICT")) {
-    return "premium";
-  }
-
-  if (YEARLY_ELEMENT_TAGS.has(tag)) {
-    return "free";
-  }
-
+const resolveSectionAccessLevel = (_tag: string): AccessLevel => {
+  // 모든 섹션 무료 제공 (나중에 프리미엄 전환 시 수정 가능)
   return "free";
 };
 

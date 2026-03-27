@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 
-import { auth } from "@/auth";
 import { fail, ok, createRequestId } from "@/lib/api";
 import { AppError } from "@/lib/auth-errors";
 import { createLogger } from "@/lib/logger";
@@ -8,12 +7,9 @@ import {
   checkRateLimit,
   getRateLimitKey,
   RATE_LIMIT_ANONYMOUS,
-  RATE_LIMIT_AUTHENTICATED,
   RATE_LIMIT_WINDOW_MS,
 } from "@/lib/rate-limit";
 import { birthInputSchema, reportCreateSchema } from "@/lib/zod";
-import { findUserRole } from "@/server/repositories/user-repository";
-import { gateReportSections } from "@/server/services/access-gate";
 import { generateBasicReport } from "@/server/services/generate-basic-report";
 import { generateDailyReport } from "@/server/services/generate-daily-report";
 import { generateJobReport } from "@/server/services/generate-job-report";
@@ -46,29 +42,15 @@ export async function POST(request: Request) {
   try {
     logger.info("saju request received", { method: "POST", path: "/api/saju" });
 
-    const session = await auth();
-
-    if (!session?.user?.id) {
-      logger.warn("saju unauthorized access", { path: "/api/saju" });
-
-      return NextResponse.json(
-        fail("UNAUTHORIZED", "로그인이 필요합니다.", requestId),
-        { status: 401 },
-      );
-    }
-
     const clientIp = getClientIp(request);
-    const rateLimitKey = getRateLimitKey(session.user.id, clientIp);
-    const rateLimitLimit = session.user.id
-      ? RATE_LIMIT_AUTHENTICATED
-      : RATE_LIMIT_ANONYMOUS;
+    const rateLimitKey = getRateLimitKey("anonymous", clientIp);
     const rateLimitResult = checkRateLimit(
       rateLimitKey,
-      rateLimitLimit,
+      RATE_LIMIT_ANONYMOUS,
       RATE_LIMIT_WINDOW_MS,
     );
     const rateLimitHeaders = createRateLimitHeaders(
-      rateLimitLimit,
+      RATE_LIMIT_ANONYMOUS,
       rateLimitResult.remaining,
       rateLimitResult.resetAt,
     );
@@ -76,7 +58,6 @@ export async function POST(request: Request) {
     if (!rateLimitResult.allowed) {
       logger.warn("saju rate limit exceeded", {
         key: rateLimitKey,
-        limit: rateLimitLimit,
         resetAt: rateLimitResult.resetAt,
       });
 
@@ -97,40 +78,24 @@ export async function POST(request: Request) {
       .parse(payload);
     const theme = reportCreatePayload.theme ?? "basic";
 
+    // 비로그인 사용자용 고유 ID 생성
+    const anonymousId = `anon_${Date.now()}`;
+
     const result =
       theme === "daily"
-        ? await generateDailyReport(session.user.id, input)
+        ? await generateDailyReport(anonymousId, input)
         : theme === "yearly"
-          ? await generateYearlyReport(session.user.id, input, reportCreatePayload.targetYear)
+          ? await generateYearlyReport(anonymousId, input, reportCreatePayload.targetYear)
           : theme === "spouse"
-            ? await generateSpouseReport(session.user.id, input)
+            ? await generateSpouseReport(anonymousId, input)
             : theme === "job"
-              ? await generateJobReport(session.user.id, input)
-              : await generateBasicReport(session.user.id, input);
-    const userRole = await findUserRole(session.user.id);
+              ? await generateJobReport(anonymousId, input)
+              : await generateBasicReport(anonymousId, input);
 
-    if (!userRole) {
-      throw new AppError("사용자 정보를 찾을 수 없습니다.", "UNAUTHORIZED", 401);
-    }
-
-    const gatedSections = gateReportSections(result.report.sections, userRole);
-
-    logger.info("saju report generated", {
-      userId: session.user.id,
-      role: userRole,
-    });
+    logger.info("saju report generated", { theme });
 
     return NextResponse.json(
-      ok(
-        {
-          ...result,
-          report: {
-            ...result.report,
-            sections: gatedSections,
-          },
-        },
-        requestId,
-      ),
+      ok(result, requestId),
       {
         headers: rateLimitHeaders,
       },
